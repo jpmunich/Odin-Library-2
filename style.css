@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cinzel', serif;
+    font-family: 'Dancing Script', cursive;
+}
+
+:root {
+    --cursive-font: 'Dancing Script', cursive;
+}
