@@ -3,9 +3,39 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Cinzel', serif;
-    font-family: 'Dancing Script', cursive;
+    color: white;
+}
+
+body {
+    background-color: #303030;
 }
 
 :root {
     --cursive-font: 'Dancing Script', cursive;
+    --bold: 700;
 }
+
+h1 {
+    text-align: center;
+    padding: 0.8em;
+}
+
+button {
+    font-weight: var(--bold);
+    background: linear-gradient(to right, rgb(74, 141, 132), rgb(97, 76, 146));
+    border: none;
+    border-radius: 3em;
+    padding: 1em 3em;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+}
+
+button:hover {
+    padding: 1.05em 3.15em;
+    background: linear-gradient(to right, rgb(65, 124, 116), rgb(86, 68, 129));
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+
