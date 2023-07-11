@@ -14,7 +14,22 @@
     <header>
         <h1>Library</h1>
     </header>
-    <button>Add Book</button>
+    <section>
+        <button class="add-book">Add Book</button>
+    </section>
+
+    <div class="add-book-screen disappear">
+        <h3>Add a Book</h3>
+        <input id="title" type="text" placeholder="Title:">
+        <input id="author" type="text" placeholder="Author:">
+        <input id="pages" type="text" placeholder="Pages:">
+        <div>
+            <p>Have you read it?</p>
+            <input id="has-read" type="checkbox">
+        </div>
+        <button id="submit" type="submit">Submit</button>
+    </div>
+    <div class="overlay disappear"></div>
     <script src="script.js"></script>
 </body>
 </html>
