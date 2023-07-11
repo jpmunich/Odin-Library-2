@@ -20,19 +20,24 @@ h1 {
     padding: 0.8em;
 }
 
+section {
+    display: flex;
+    justify-content: center;
+}
+
 button {
+    font-size: 1rem;
     font-weight: var(--bold);
     background: linear-gradient(to right, rgb(74, 141, 132), rgb(97, 76, 146));
     border: none;
     border-radius: 3em;
-    padding: 1em 3em;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+    padding: 0.9em 2.7em;
 }
 
 button:hover {
-    padding: 1.05em 3.15em;
+    padding: 0.95em 2.85em;
     background: linear-gradient(to right, rgb(65, 124, 116), rgb(86, 68, 129));
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    box-shadow: 3.5px 3.5px 4px rgba(0, 0, 0, 0.6);
 }
 
 
