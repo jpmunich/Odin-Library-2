@@ -22,28 +22,27 @@ function addBookToLibrary(title, author, pages) {
     let hasRead = undefined;
     if (hasReadTheBook.checked) hasRead = 'Read';
     else hasRead = 'Unread';
-    const newBook = new Book(title, author, pages, hasRead);
-    library.push(newBook);
+    const book = new Book(title, author, pages, hasRead);
+    library.push(book);
 }
 
 
 function updateLibrary() {
-    library.forEach(book => {
         const newBook = document.createElement('div');
         newBook.classList.add('new-book');
         newBookContainer.appendChild(newBook);
 
         const bookTitle = document.createElement('p');
-        bookTitle.innerText = book.title;
+        bookTitle.innerText = library[library.length - 1].title;
 
         const bookAuthor = document.createElement('p');
-        bookAuthor.innerText = book.author;
+        bookAuthor.innerText = library[library.length - 1].author;
 
         const bookPages = document.createElement('p');
-        bookPages.innerText = `${book.pages} Pages`;
+        bookPages.innerText = `${library[library.length - 1].pages} Pages`;
 
         const hasReadBook = document.createElement('button');
-        hasReadBook.innerText = book.hasRead;
+        hasReadBook.innerText = library[library.length - 1].hasRead;
         hasReadBook.classList.add('has-read');
         hasReadBook.addEventListener('click', () => {
             if (hasReadBook.innerText === 'Unread') {hasReadBook.innerText = 'Read'}
@@ -59,7 +58,6 @@ function updateLibrary() {
         newBook.appendChild(bookPages);
         newBook.appendChild(hasReadBook);
         newBook.appendChild(remove);
-    })
 }
 
 addBookButton.addEventListener('click', () => {
