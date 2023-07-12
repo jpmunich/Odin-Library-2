@@ -1,6 +1,7 @@
 const addBookButton = document.querySelector('.add-book');
 const submitButton = document.querySelector('#submit');
 const addBookScreen = document.querySelector('.add-book-screen');
+const newBookContainer = document.querySelector('#new-book-container');
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
 const pages = document.querySelector('#pages');
@@ -19,18 +20,18 @@ function Book(title, author, pages, hasRead) {
 
 function addBookToLibrary(title, author, pages) {
     let hasRead = undefined;
-    if (hasReadTheBook.checked) hasRead = true;
-    else hasRead = false;
+    if (hasReadTheBook.checked) hasRead = 'Read';
+    else hasRead = 'Unread';
     const newBook = new Book(title, author, pages, hasRead);
     library.push(newBook);
-    console.log(library)
 }
+
 
 function updateLibrary() {
     library.forEach(book => {
         const newBook = document.createElement('div');
         newBook.classList.add('new-book');
-        document.body.appendChild(newBook);
+        newBookContainer.appendChild(newBook);
 
         const bookTitle = document.createElement('p');
         bookTitle.innerText = book.title;
@@ -43,9 +44,15 @@ function updateLibrary() {
 
         const hasReadBook = document.createElement('button');
         hasReadBook.innerText = book.hasRead;
+        hasReadBook.classList.add('has-read');
+        hasReadBook.addEventListener('click', () => {
+            if (hasReadBook.innerText === 'Unread') {hasReadBook.innerText = 'Read'}
+            else if (hasReadBook.innerText === 'Read') hasReadBook.innerText = 'Unread';
+        })
 
         const remove = document.createElement('button');
         remove.innerText = 'remove';
+        remove.classList.add('remove');
 
         newBook.appendChild(bookTitle);
         newBook.appendChild(bookAuthor);
