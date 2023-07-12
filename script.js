@@ -52,6 +52,7 @@ function updateLibrary() {
         const remove = document.createElement('button');
         remove.innerText = 'remove';
         remove.classList.add('remove');
+        remove.addEventListener('click', () => {newBookContainer.removeChild(newBook)})
 
         newBook.appendChild(bookTitle);
         newBook.appendChild(bookAuthor);
@@ -73,3 +74,7 @@ submitButton.addEventListener('click', (e) => {
     updateLibrary();
 })
 
+overlay.addEventListener('click', () => {
+    addBookScreen.classList.add('disappear');
+    overlay.classList.add('disappear');
+})
