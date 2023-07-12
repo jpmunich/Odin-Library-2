@@ -21,6 +21,7 @@ input {
 }
 
 h1 {
+    font-size: clamp(2rem, 3vw, 3.5rem);
     text-align: center;
     padding: 0.8em;
 }
@@ -51,17 +52,20 @@ section {
     top: 50%;
     left: 50%;
     z-index: 1;
-    background-color: gray;
+    background-color: #444444;
     border-radius: 0.8em;
     width: 250px;
-    gap: 1em;
+    gap: 1.2em;
     padding: 1em;
     display: flex;
     flex-direction: column;
 }
 
 .add-book-screen > input {
+    border: none;
+    border-radius: 0.5em;
     padding: 0.8em;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .add-book-screen > div {
@@ -74,13 +78,65 @@ section {
 .add-book-screen > div > input {
     width: 16px;
     height: 16px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .add-book-screen > button {
     padding: 0.7em;
     font-weight: var(--bold);
-    background-color: transparent;
+    background: linear-gradient(to left, rgb(74, 141, 132), rgb(97, 76, 146));
+    border: none;
+    border-radius: 0.2em;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
+#new-book-container {
+    padding: 3em clamp(4em, 10vw, 10em);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.new-book {
+    padding: 2em 1em;
+    background-color: #444444;
+    border-radius: 0.5em;
+    display: flex;
+    gap: 1.2em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 300px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+}
+
+@media (min-width: 1312px) {.new-book {flex: 1 1 25vw;}}
+@media (max-width: 390px) {
+    .new-book {width: 100%}
+    #new-book-container {padding: 2em;}
+}
+
+.has-read {
+    font-size: 1rem;
+    font-weight: var(--bold);
+    background: rgb(74, 141, 132);
+    border: none;
+    border-radius: 0.2em;
+    padding: 1em 0.5em;
+    width: calc(100% - 2em);
+}
+
+.remove {
+    font-size: 1rem;
+    font-weight: var(--bold);
+    background: rgb(97, 76, 146);
+    border: none;
+    border-radius: 0.2em;
+    padding: 1em 0.5em;
+    width: calc(100% - 2em);
+}
+
 
 .overlay {
     position: absolute;
