@@ -17,8 +17,7 @@ function Book(title, author, pages, hasRead) {
     this.hasRead = hasRead;
 }
 
-function addBookToLibrary(title, author, pages) {
-    let hasRead = undefined;
+function addBookToLibrary(title, author, pages, hasRead = undefined) {
     if (hasReadTheBook.checked) hasRead = 'Read';
     else hasRead = 'Unread';
     const book = new Book(title, author, pages, hasRead);
@@ -60,22 +59,23 @@ function updateLibrary() {
         newBook.appendChild(remove);
 }
 
-addBookButton.addEventListener('click', () => {
+function openAddBookScreen() {
     addBookScreen.classList.remove('disappear');
     overlay.classList.remove('disappear');
-})
+}
 
+function closeAddBookScreen() {
+    addBookScreen.classList.add('disappear');
+    overlay.classList.add('disappear');
+}
+
+addBookButton.addEventListener('click', openAddBookScreen);
+overlay.addEventListener('click', closeAddBookScreen);
 submitButton.addEventListener('click', (e) => {
     if (title.value !== "" && author.value !== "" && pages.value !== "") {
         e.preventDefault();
-        addBookScreen.classList.add('disappear');
-        overlay.classList.add('disappear');
+        closeAddBookScreen();
         addBookToLibrary(title.value, author.value, pages.value);
         updateLibrary();
     }
-})
-
-overlay.addEventListener('click', () => {
-    addBookScreen.classList.add('disappear');
-    overlay.classList.add('disappear');
 })
