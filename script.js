@@ -15,7 +15,6 @@ function Book(title, author, pages, hasRead) {
     this.author = author
     this.pages = pages;
     this.hasRead = hasRead;
-    this.info = function() {console.log(`This book, ${this.title}, by ${this.author} has ${this.pages} pages. It is ${this.hasRead} that I have read it!`)}
 }
 
 function addBookToLibrary(title, author, pages) {
@@ -67,11 +66,13 @@ addBookButton.addEventListener('click', () => {
 })
 
 submitButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    addBookScreen.classList.add('disappear');
-    overlay.classList.add('disappear');
-    addBookToLibrary(title.value, author.value, pages.value);
-    updateLibrary();
+    if (title.value !== "" && author.value !== "" && pages.value !== "") {
+        e.preventDefault();
+        addBookScreen.classList.add('disappear');
+        overlay.classList.add('disappear');
+        addBookToLibrary(title.value, author.value, pages.value);
+        updateLibrary();
+    }
 })
 
 overlay.addEventListener('click', () => {
