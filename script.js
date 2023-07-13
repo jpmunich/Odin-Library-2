@@ -18,8 +18,14 @@ function Book(title, author, pages, hasRead) {
 }
 
 Book.prototype.toggleHasRead = function() {
-
+    if (this.hasRead === 'Unread') this.hasRead = 'Read';
+    else if (this.hasRead === 'Read') this.hasRead = 'Unread';
 }
+
+function toggleHasReadText(text) {
+        if (text.innerText === 'Unread') text.innerText = 'Read';
+        else if (text.innerText === 'Read') text.innerText = 'Unread';
+    }
 
 function addBookToLibrary(title, author, pages, hasRead = undefined) {
     if (hasReadTheBook.checked) hasRead = 'Read';
@@ -34,11 +40,12 @@ function removeBookFromLibrary(index) {
 
 function createHasReadButton(book) {
     const hasReadBook = document.createElement('button');
-    hasReadBook.innerText = library[library.length - 1].hasRead;
+    hasReadBook.dataset.index = (library.length - 1);
+    hasReadBook.innerText = `${library[library.length - 1].hasRead}`;
     hasReadBook.classList.add('has-read');
     hasReadBook.addEventListener('click', () => {
-        if (hasReadBook.innerText === 'Unread') {hasReadBook.innerText = 'Read'}
-        else if (hasReadBook.innerText === 'Read') hasReadBook.innerText = 'Unread';
+        toggleHasReadText(hasReadBook);
+        library[hasReadBook.dataset.index].toggleHasRead();
     })
     book.appendChild(hasReadBook);
 }
@@ -54,7 +61,10 @@ function createRemoveBookButton(book) {
         newBookContainer.removeChild(book)
         Array.from(document.getElementsByClassName('remove')).forEach(element => {
             if (remove.dataset.index < element.dataset.index) element.dataset.index--;
-})
+        })
+        Array.from(document.getElementsByClassName('has-read')).forEach(element => {
+            if (remove.dataset.index < element.dataset.index) element.dataset.index--;
+        })
         removeBookFromLibrary(remove.dataset.index);
     })
 }
