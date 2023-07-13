@@ -17,6 +17,10 @@ function Book(title, author, pages, hasRead) {
     this.hasRead = hasRead;
 }
 
+Book.prototype.toggleHasRead = function() {
+
+}
+
 function addBookToLibrary(title, author, pages, hasRead = undefined) {
     if (hasReadTheBook.checked) hasRead = 'Read';
     else hasRead = 'Unread';
@@ -42,7 +46,7 @@ function createHasReadButton(book) {
 function createRemoveBookButton(book) {
     const remove = document.createElement('button');
     remove.dataset.index = (library.length - 1);
-    remove.innerText = `remove ${remove.dataset.index}`;
+    remove.innerText = `Remove`;
     remove.classList.add('remove');
     book.appendChild(remove);
 
@@ -50,8 +54,7 @@ function createRemoveBookButton(book) {
         newBookContainer.removeChild(book)
         Array.from(document.getElementsByClassName('remove')).forEach(element => {
             if (remove.dataset.index < element.dataset.index) element.dataset.index--;
-            element.innerText = `remove ${element.dataset.index}`
-        })
+})
         removeBookFromLibrary(remove.dataset.index);
     })
 }
