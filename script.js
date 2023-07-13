@@ -24,6 +24,10 @@ function addBookToLibrary(title, author, pages, hasRead = undefined) {
     library.push(book);
 }
 
+function removeBookFromLibrary(index) {
+    library.splice(index, 1);
+}
+
 function createHasReadButton(book) {
     const hasReadBook = document.createElement('button');
     hasReadBook.innerText = library[library.length - 1].hasRead;
@@ -37,14 +41,23 @@ function createHasReadButton(book) {
 
 function createRemoveBookButton(book) {
     const remove = document.createElement('button');
-    remove.innerText = 'remove';
+    remove.dataset.index = (library.length - 1);
+    remove.innerText = `remove ${remove.dataset.index}`;
     remove.classList.add('remove');
     book.appendChild(remove);
-    remove.addEventListener('click', () => {newBookContainer.removeChild(book)})
+
+    remove.addEventListener('click', () => {
+        newBookContainer.removeChild(book)
+        Array.from(document.getElementsByClassName('remove')).forEach(element => {
+            if (remove.dataset.index < element.dataset.index) element.dataset.index--;
+            element.innerText = `remove ${element.dataset.index}`
+        })
+        removeBookFromLibrary(remove.dataset.index);
+    })
 }
 
-function createBookElement(book, elementText) {
-    const bookElement = document.createElement('p');
+function createBookElement(book, elementType, elementText) {
+    const bookElement = document.createElement(elementType);
     bookElement.innerText = elementText;
     book.appendChild(bookElement);
 }
@@ -54,9 +67,9 @@ function updateLibrary() {
         newBook.classList.add('new-book');
         newBookContainer.appendChild(newBook);
 
-        createBookElement(newBook, library[library.length - 1].title);
-        createBookElement(newBook, library[library.length - 1].author);
-        createBookElement(newBook, `${library[library.length - 1].pages} Pages`);
+        createBookElement(newBook, 'p', library[library.length - 1].title);
+        createBookElement(newBook, 'p',  library[library.length - 1].author);
+        createBookElement(newBook, 'p', `${library[library.length - 1].pages} Pages`);
         createHasReadButton(newBook);
         createRemoveBookButton(newBook);
 }
