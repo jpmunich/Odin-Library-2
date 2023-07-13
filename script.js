@@ -24,39 +24,41 @@ function addBookToLibrary(title, author, pages, hasRead = undefined) {
     library.push(book);
 }
 
+function createHasReadButton(book) {
+    const hasReadBook = document.createElement('button');
+    hasReadBook.innerText = library[library.length - 1].hasRead;
+    hasReadBook.classList.add('has-read');
+    hasReadBook.addEventListener('click', () => {
+        if (hasReadBook.innerText === 'Unread') {hasReadBook.innerText = 'Read'}
+        else if (hasReadBook.innerText === 'Read') hasReadBook.innerText = 'Unread';
+    })
+    book.appendChild(hasReadBook);
+}
+
+function createRemoveBookButton(book) {
+    const remove = document.createElement('button');
+    remove.innerText = 'remove';
+    remove.classList.add('remove');
+    book.appendChild(remove);
+    remove.addEventListener('click', () => {newBookContainer.removeChild(book)})
+}
+
+function createBookElement(book, elementText) {
+    const bookElement = document.createElement('p');
+    bookElement.innerText = elementText;
+    book.appendChild(bookElement);
+}
 
 function updateLibrary() {
         const newBook = document.createElement('div');
         newBook.classList.add('new-book');
         newBookContainer.appendChild(newBook);
 
-        const bookTitle = document.createElement('p');
-        bookTitle.innerText = library[library.length - 1].title;
-
-        const bookAuthor = document.createElement('p');
-        bookAuthor.innerText = library[library.length - 1].author;
-
-        const bookPages = document.createElement('p');
-        bookPages.innerText = `${library[library.length - 1].pages} Pages`;
-
-        const hasReadBook = document.createElement('button');
-        hasReadBook.innerText = library[library.length - 1].hasRead;
-        hasReadBook.classList.add('has-read');
-        hasReadBook.addEventListener('click', () => {
-            if (hasReadBook.innerText === 'Unread') {hasReadBook.innerText = 'Read'}
-            else if (hasReadBook.innerText === 'Read') hasReadBook.innerText = 'Unread';
-        })
-
-        const remove = document.createElement('button');
-        remove.innerText = 'remove';
-        remove.classList.add('remove');
-        remove.addEventListener('click', () => {newBookContainer.removeChild(newBook)})
-
-        newBook.appendChild(bookTitle);
-        newBook.appendChild(bookAuthor);
-        newBook.appendChild(bookPages);
-        newBook.appendChild(hasReadBook);
-        newBook.appendChild(remove);
+        createBookElement(newBook, library[library.length - 1].title);
+        createBookElement(newBook, library[library.length - 1].author);
+        createBookElement(newBook, `${library[library.length - 1].pages} Pages`);
+        createHasReadButton(newBook);
+        createRemoveBookButton(newBook);
 }
 
 function openAddBookScreen() {
