@@ -38,6 +38,15 @@ function removeBookFromLibrary(index) {
     library.splice(index, 1);
 }
 
+function updateIndexes() {
+    Array.from(document.getElementsByClassName('remove')).forEach(element => {
+        if (remove.dataset.index < element.dataset.index) element.dataset.index--;
+    })
+    Array.from(document.getElementsByClassName('has-read')).forEach(element => {
+        if (remove.dataset.index < element.dataset.index) element.dataset.index--;
+    })
+}
+
 function createHasReadButton(book) {
     const hasReadBook = document.createElement('button');
     hasReadBook.dataset.index = (library.length - 1);
@@ -58,16 +67,12 @@ function createRemoveBookButton(book) {
     book.appendChild(remove);
 
     remove.addEventListener('click', () => {
-        newBookContainer.removeChild(book)
-        Array.from(document.getElementsByClassName('remove')).forEach(element => {
-            if (remove.dataset.index < element.dataset.index) element.dataset.index--;
-        })
-        Array.from(document.getElementsByClassName('has-read')).forEach(element => {
-            if (remove.dataset.index < element.dataset.index) element.dataset.index--;
-        })
+        newBookContainer.removeChild(book);
+        updateIndexes();
         removeBookFromLibrary(remove.dataset.index);
     })
 }
+
 
 function createBookElement(book, elementType, elementText) {
     const bookElement = document.createElement(elementType);
