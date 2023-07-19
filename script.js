@@ -10,16 +10,18 @@ const overlay = document.querySelector('.overlay');
 
 let library = [];
 
-function Book(title, author, pages, hasRead) {
-    this.title = title;
-    this.author = author
-    this.pages = pages;
-    this.hasRead = hasRead;
-}
+class Book {
+    constructor(title, author, pages, hasRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = hasRead;
+    }
 
-Book.prototype.toggleHasRead = function() {
-    if (this.hasRead === 'Unread') this.hasRead = 'Read';
-    else if (this.hasRead === 'Read') this.hasRead = 'Unread';
+    toggleHasRead() {
+        if (this.hasRead === 'Unread') this.hasRead = 'Read';
+        else if (this.hasRead === 'Read') this.hasRead = 'Unread';
+    }
 }
 
 function toggleHasReadText(text) {
